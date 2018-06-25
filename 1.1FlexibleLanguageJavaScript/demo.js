@@ -114,3 +114,43 @@ checkObjectCdyP.prototype={
 //使用的时候也要声明
 var d=new checkObjectCdyP();
 d.checkName1().checkName2().checkName3();
+
+// 1.9 函数的祖先
+
+//不推荐用，因为会污染Function
+// Function.prototype.checkName=function(){
+//     console.log('1.9 函数的祖先 function checkName already running');
+
+// }
+// var f = function(){};
+// f.checkName();
+
+// 抽象出一个统一添加方法的功能方法
+// Function.prototype.addMethod=function(name,fn){
+//     this[name]=fn;
+// }
+// var method = function(){};
+
+// method.addMethod('checkName',function(){
+//     console.log('1.9 函数的祖先 抽象出一个统一添加方法的功能方法 function checkName already running');
+// })
+// method.checkName();
+
+// 1.10 链式添加
+
+//抽象出一个统一添加方法的功能方法
+Function.prototype.addMethod=function(name,fn){
+    this.prototype[name]=fn;
+    return this;
+}
+var method = function(){};
+
+method.addMethod('checkName',function(){
+    console.log('1.111 链式添加 function checkName already running');
+    return this;
+});
+// method.checkName().checkName2();
+
+//1.11 换一种方式使用方法
+var m = new method();
+m.checkName();
