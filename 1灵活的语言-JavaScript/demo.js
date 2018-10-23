@@ -154,3 +154,20 @@ method.addMethod('checkName',function(){
 //1.11 换一种方式使用方法
 var m = new method();
 m.checkName();
+
+// 课后问题
+// 真假对象一节中如何实现方法的链式调用呢？
+var trueFalseObject = function () {
+  return {
+    checkName : function () {
+      console.log('checkName')
+      return this
+    },
+    checkAge : function () {
+      console.log('checkAge')
+      return this
+    }
+  }
+}
+var trueFalseObjectItem = trueFalseObject ()
+trueFalseObjectItem.checkName().checkAge()
