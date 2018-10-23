@@ -157,6 +157,7 @@ m.checkName();
 
 // 课后问题
 // 真假对象一节中如何实现方法的链式调用呢？
+console.log('真假对象一节中如何实现方法的链式调用呢？')
 var trueFalseObject = function () {
   return {
     checkName : function () {
@@ -171,3 +172,43 @@ var trueFalseObject = function () {
 }
 var trueFalseObjectItem = trueFalseObject ()
 trueFalseObjectItem.checkName().checkAge()
+
+// 试着定义一个可以为函数添加多个方法的addMethod方法
+console.log('试着定义一个可以为函数添加多个方法的addMethod方法')
+Function.prototype.addMethod = function (funList) {
+  for(let i in funList){
+    this[i] = funList[i]
+  }
+  return this
+}
+var methods = function () {}
+methods.addMethod({
+  checkName: function () {
+    console.log('checkName')
+    return this
+  },
+  checkAge: function () {
+    console.log('checkAge')
+    return this
+  }
+})
+
+methods.checkName().checkAge()
+
+// 试着定义一个即可为函数原型添加方法犹可为其自身添加方法的addMethod方法
+console.log('试着定义一个即可为函数原型添加方法又可为其自身添加方法的addMethod方法')
+
+Function.prototype.addMethod = function(name, fn){
+  Function.prototype[name]=fn
+  this[name] = fn
+  return this
+}
+var methods = function () {}
+methods.addMethod('checkAge',()=>{
+  console.log('checkAge')
+})
+methods.checkAge()
+
+var methods2 = function () {}
+
+methods2.checkAge()
