@@ -168,3 +168,22 @@ var Book = (function() {
   
   return _book;
 })();
+
+
+// 检察官模式
+
+var Ball = function(type) {
+  if(this instanceof Ball){
+    this.type = type
+  } else {
+    return new Ball(type)
+  }
+}
+
+Ball.prototype.getType = function() {
+  console.log(this.type)
+}
+
+var football = Ball('football')
+
+football.getType()
