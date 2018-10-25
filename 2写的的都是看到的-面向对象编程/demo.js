@@ -187,3 +187,21 @@ Ball.prototype.getType = function() {
 var football = Ball('football')
 
 football.getType()
+
+
+function SuperClass() {
+  this.superValue = true
+}
+
+SuperClass.prototype.getType = function() {
+  console.log(this.superValue)
+}
+
+function SubClass() {
+  this.subValue = false
+}
+
+SubClass.prototype = new SuperClass()
+
+var newSub = new SubClass()
+newSub.getType()
