@@ -180,28 +180,133 @@ var Ball = function(type) {
   }
 }
 
-Ball.prototype.getType = function() {
-  console.log(this.type)
-}
+// Ball.prototype.getType = function() {
+//   console.log(this.type)
+// }
 
-var football = Ball('football')
+// var football = Ball('football')
 
-football.getType()
+// football.getType()
 
 
-function SuperClass() {
-  this.superValue = true
-}
+// function SuperClass() {
+//   this.superValue = true
+// }
 
-SuperClass.prototype.getType = function() {
-  console.log(this.superValue)
-}
+// SuperClass.prototype.getType = function() {
+//   console.log(this.superValue)
+// }
 
-function SubClass() {
-  this.subValue = false
-}
+// function SubClass() {
+//   this.subValue = false
+// }
 
-SubClass.prototype = new SuperClass()
+// SubClass.prototype = new SuperClass()
 
-var newSub = new SubClass()
-newSub.getType()
+// var newSub = new SubClass()
+// newSub.getType()
+
+
+// 面试题
+// for (var i = 0; i < 5; i++) {
+//   setTimeout(function() {
+//       console.log(new Date, i);
+//   }, 1000);
+// }
+
+// console.log(new Date, i);
+// 运行结果
+// 2017-03-18T00:43:45.873Z 5
+// 2017-03-18T00:43:46.866Z 5
+// 2017-03-18T00:43:46.868Z 5
+// 2017-03-18T00:43:46.868Z 5
+// 2017-03-18T00:43:46.868Z 5
+// 2017-03-18T00:43:46.868Z 5
+
+// 追问1：闭包
+// 如果期望代码的输出变成：5 -> 0,1,2,3,4，该怎么改造代码？
+// for(var i = 0;i<5;i++){
+//   (function(num){setTimeout(function(){
+//     console.log(new Date, num)
+//   })})(i)
+// }
+// console.log('//d')
+
+// for(let i = 0;i<5;i++){
+//   setTimeout(function(){
+//     console.log(new Date, i)
+//   })
+// }
+
+// for (var i = 0; i < 5; i++) {
+//    (function(num){
+//     setTimeout(function() {
+//       console.log(new Date, num);
+//     }, 1000*num);
+//    })(i)
+// }
+
+// setTimeout(()=>{
+//   console.log(new Date, i);
+// },1000*i)
+
+// const tasks = []
+
+// for (var i = 0; i < 5; i++) {
+//   ((j)=>{
+//     tasks.push(new Promise((resolve)=>{
+//       setTimeout(()=>{
+//         console.log(new Date, j)
+//         resolve()
+//       },1000*j)
+//     }))
+//   })(i)
+// }
+
+// Promise.all(tasks).then(()=>{
+//   setTimeout(()=>{
+//     console.log(new Date,i)
+//   },1000);
+// })
+
+// const testConst = []
+
+// for(var x = 0; x < 5; x++){
+//   (function(num){
+//     testConst.push(new Promise((resolve)=>{
+//       setTimeout(()=>{
+//         console.log(new Date, num)
+//         resolve()
+//       },1000*num)
+//     }))
+//   })(x)
+// }
+
+// Promise.all(testConst).then(()=>{
+//   setTimeout(()=>{
+//     console.log(new Date, x)
+//   }, 1000)
+// })
+
+const sleep = (timeountMS) => { return new Promise((resolve) => {
+  setTimeout(resolve,timeountMS);
+}) }
+
+(async () => {
+  for (var i = 0;i < 5;i++){
+    await sleep(1000)
+    console.log(new Date, i)
+  }
+  await sleep(1000)
+  console.log(new Date, i)
+})()
+
+// (async () => {  // 声明即执行的 async 函数表达式
+//   for (var i = 0; i < 5; i++) {
+//       await sleep(1000);
+//       console.log(new Date, i);
+//   }
+
+//   await sleep(1000);
+//   console.log(new Date, i);
+// })();
