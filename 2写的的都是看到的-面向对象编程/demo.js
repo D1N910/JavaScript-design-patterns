@@ -342,3 +342,9 @@ var subItem = new SubClass()
 
 console.log(subItem.getSuperValue())
 console.log(subItem.getSubVale())
+
+console.log(subItem instanceof SubClass) // true
+console.log(subItem instanceof SuperClass) // true
+console.log(SubClass instanceof SuperClass) // false
+
+console.log(SubClass.prototype instanceof SuperClass) // true
