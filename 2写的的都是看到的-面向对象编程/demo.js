@@ -288,18 +288,18 @@ var Ball = function(type) {
 //   }, 1000)
 // })
 
-const sleep = (timeountMS) => { return new Promise((resolve) => {
-  setTimeout(resolve,timeountMS);
-}) }
+// const sleep = (timeountMS) => { return new Promise((resolve) => {
+//   setTimeout(resolve,timeountMS);
+// }) }
 
-(async () => {
-  for (var i = 0;i < 5;i++){
-    await sleep(1000)
-    console.log(new Date, i)
-  }
-  await sleep(1000)
-  console.log(new Date, i)
-})()
+// (async () => {
+//   for (var i = 0;i < 5;i++){
+//     await sleep(1000)
+//     console.log(new Date, i)
+//   }
+//   await sleep(1000)
+//   console.log(new Date, i)
+// })()
 
 // (async () => {  // 声明即执行的 async 函数表达式
 //   for (var i = 0; i < 5; i++) {
@@ -310,3 +310,35 @@ const sleep = (timeountMS) => { return new Promise((resolve) => {
 //   await sleep(1000);
 //   console.log(new Date, i);
 // })();
+
+
+// 传宗接代－－继承
+
+// 类式继承
+// 声明父类
+function SuperClass () {
+  this.superValue = true;
+};
+
+// 为父类添加共有方法
+SuperClass.prototype.getSuperValue = function () {
+  return this.superValue;
+};
+
+// 声明子类
+function SubClass () {
+  this.subValue = false;
+}
+
+// 继承父类
+SubClass.prototype = new SuperClass ()
+// 为子类添加共有方法
+SubClass.prototype.getSubVale = function () {
+  return this.subValue
+}
+
+// 新建对象
+var subItem = new SubClass()
+
+console.log(subItem.getSuperValue())
+console.log(subItem.getSubVale())
