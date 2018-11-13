@@ -312,39 +312,59 @@ var Ball = function(type) {
 // })();
 
 
-// 传宗接代－－继承
+/*********** 传宗接代－－继承 ***********/
 
 // 类式继承
 // 声明父类
-function SuperClass () {
-  this.superValue = true;
-};
+// function SuperClass () {
+//   this.superValue = true;
+// };
 
 // 为父类添加共有方法
-SuperClass.prototype.getSuperValue = function () {
-  return this.superValue;
-};
+// SuperClass.prototype.getSuperValue = function () {
+//   return this.superValue;
+// };
 
 // 声明子类
-function SubClass () {
-  this.subValue = false;
-}
+// function SubClass () {
+//   this.subValue = false;
+// }
 
 // 继承父类
-SubClass.prototype = new SuperClass ()
-// 为子类添加共有方法
-SubClass.prototype.getSubVale = function () {
-  return this.subValue
-}
+// SubClass.prototype = new SuperClass ()
+// // 为子类添加共有方法
+// SubClass.prototype.getSubVale = function () {
+//   return this.subValue
+// }
 
 // 新建对象
-var subItem = new SubClass()
+// var subItem = new SubClass()
 
-console.log(subItem.getSuperValue())
-console.log(subItem.getSubVale())
+// console.log(subItem.getSuperValue())
+// console.log(subItem.getSubVale())
 
-console.log(subItem instanceof SubClass) // true
-console.log(subItem instanceof SuperClass) // true
-console.log(SubClass instanceof SuperClass) // false
+// console.log(subItem instanceof SubClass) // true
+// console.log(subItem instanceof SuperClass) // true
+// console.log(SubClass instanceof SuperClass) // false
 
-console.log(SubClass.prototype instanceof SuperClass) // true
+// console.log(SubClass.prototype instanceof SuperClass) // true
+
+// console.log(subItem instanceof Object) // true
+
+/*********** 传宗接代－－继承  ***********/
+// 两个缺点，因为子类通过其原型 prototype 对父类实例化，继承了父类。所以说父类的中的共有属性
+// 是要引用类型，就会再子类中被所有实例共用。因此一个子类的实例更改子类原型从父类构造函数中继承
+// 来的共有属性酒会直接影响到其它子类：
+
+// function SuperClass () {
+//   this.books = ['JavaScript', 'html', 'css'];
+// }
+// function SubClass () {}
+// SubClass.prototype = new SuperClass();
+// var instance1 = new SubClass();
+// var instance2 = new SubClass();
+// console.log(instance2.books); // ["JavaScript", "html", "css"]
+// instance1.books.push('测试')
+// console.log(instance2.books)
+
+// instance1的一个无意的修改就会
