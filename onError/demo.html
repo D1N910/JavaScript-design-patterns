@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script language="javascript">
+    window.onerror = function (ms, Url, Line) {
+      alert("您调用的函数不存在\n" + ms + "\n" + Url + "\n" + Line + "\n");//弹出错误提示对话框
+      return true; //返回true
+    }
+    // function ImgLoad() {
+    //   document.images[0].onerror = function () {
+    //     alert("您调用的图像并不存在\n");
+    //   };
+    //   document.images[0].src = "test.gif";
+    // }
+  </script>
+</head>
+
+    <body onload="ImgLoad()">
+      <script language="javascript">
+        onHave(); //调用不存在的onHave()函数
+        c();
+      </script>
+      <img />
+
+</body>
+</html>

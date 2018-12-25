@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+
+</body>
+<script>
+
+  function quotatius(names) {
+    var quotes = [];
+    for (let i = 0; i < names.length; i++) {
+      (
+        function(ddd) {
+          console.log(i)
+          console.log(ddd)
+          var theFUunction = function() {
+            console.log('I')
+            console.log(i)
+            console.log('DDDD')
+            console.log(ddd)
+            return names[ddd];
+          }
+          quotes.push(theFUunction)
+        }
+      )(i)
+    }
+    return quotes
+  }
+
+  var quotatiusF = quotatius([1111,1112,1113,5111])
+  console.log(quotatiusF[0]())
+</script>
+</html>
