@@ -112,7 +112,7 @@ checkObjectCdyP.prototype={
     }
 }
 //使用的时候也要声明
-var d=new checkObjectCdyP();
+var d = new checkObjectCdyP();
 d.checkName1().checkName2().checkName3();
 
 // 1.9 函数的祖先
