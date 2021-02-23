@@ -19,7 +19,7 @@ class Alert {
         // 为提示框面板添加类
         this.panel.className = 'alert';
         // 为确定按钮组件添加类
-        this.confirmBtn.className = 'a-confirm';
+        this.confirmBtn.className = 'a-btn a-confirm';
         // 为取消按钮组件添加类
         this.closeBtn.className = 'a-close';
         this.closeBtn.innerHTML = 'X';
@@ -69,13 +69,47 @@ class Alert {
 
     // 展示弹框的方法
     show() {
-        this.panel.style.display = 'block';;
+        this.panel.style.display = 'block';
     }
 }
 
+
+class AlertConfirmCancel extends Alert {
+    constructor(data) {
+        super(data);
+        // 创建取消按钮组件
+        this.cancelBtn = document.createElement('div');
+        this.cancelBtn.className = 'a-btn a-cancel';
+        // 为确定按钮添加文案
+        this.cancelBtn.innerHTML = data.confirm || '取消';
+        this.cancelFn = data.cancelFn || function () {}
+    }
+    init() {
+        super.init()
+        this.panel.appendChild(this.cancelBtn);
+    }
+    bindEvent() {
+        super.bindEvent()
+
+        const me = this
+        this.cancelBtn.onclick = function () {
+            // 执行徐晓方法
+            me.cancelFn();
+            // 隐藏弹层
+            me.hide();
+        }
+    }
+}
+
+
 document.getElementById('showNormalBtn').addEventListener('click', function() {
-    console.log('ddd')
     new Alert({
         content: '普通内容'
+    }).init()
+})
+
+document.getElementById('showConfirmCancelBtn').addEventListener('click', function() {
+    new AlertConfirmCancel({
+        content: '又有取消又有确定'
     }).init()
 })
